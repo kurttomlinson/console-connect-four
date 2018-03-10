@@ -86,8 +86,6 @@ describe 'ConnectFourMoveNode#winner' do
     tree.make_move(3)
     tree.make_move(4) # 1
     tree.make_move(4)
-puts ""
-    puts tree.to_s
 
     expect(tree.last_move.winner).to eq nil
   end
