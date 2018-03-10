@@ -25,6 +25,8 @@ class ConnectFourMoveNode
       end
       if self.winner == maximizing_player_id
         return ConnectFourConstants::MAX_VALUE
+      elsif self.winner == ConnectFourConstants::TIE
+        return (ConnectFourConstants::MAX_VALUE + ConnectFourConstants::MIN_VALUE) / 2
       else
         return ConnectFourConstants::MIN_VALUE
       end
