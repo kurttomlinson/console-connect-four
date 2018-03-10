@@ -11,6 +11,16 @@ class ConnectFourMoveTree
   end
 
   def make_move(column)
+  	column = 'c' if column == ''
+  	if column =~ /c(\d*)/
+  		depth = $1
+  		depth = 4 if depth == ''
+  		column = ai_choose_column(depth)
+  		puts "ai move: #{column}"
+  	else
+  		column = column.to_i
+  		puts "human move: #{column}"
+  	end
     if (column < 0) || (column >= ConnectFourConstants::COLUMNS)
       raise "columns must be between 0 and #{ConnectFourConstants::COLUMNS - 1}"
     end
@@ -30,6 +40,21 @@ class ConnectFourMoveTree
     end
     @last_move.owner = @player_to_move
     @player_to_move = (@player_to_move == ConnectFourConstants::PLAYER_ONE) ? ConnectFourConstants::PLAYER_TWO : ConnectFourConstants::PLAYER_ONE
+  end
+
+  def ai_choose_column(depth)
+  	if @root.nil?
+  		return [0, 1, 2, 3, 4, 5, 6].sample
+  	end
+  	max_score = ConnectFourConstants::MIN_VALUE
+  	column_score_pairs = Array.new
+  	last_move.children&.each do |child|
+  		column = child.column
+  		score = child.minimax(depth, true)
+  		max_score = [score, max_score].max
+			column_score_pairs.push({ column: column, score: score })
+  	end
+  	return column_score_pairs.select {|pair| pair[:score] == max_score}.sample[:column]
   end
 
   def to_s
