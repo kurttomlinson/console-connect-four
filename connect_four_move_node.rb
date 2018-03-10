@@ -16,9 +16,6 @@ class ConnectFourMoveNode
     @column = column
   end
 
-  MAX_VALUE = +1000
-  MIN_VALUE = -1000
-
   def minimax(depth, maximizing_player)
     if self.winner
       if maximizing_player
@@ -27,23 +24,23 @@ class ConnectFourMoveNode
         maximizing_player_id = (@owner == ConnectFourConstants::PLAYER_ONE) ? ConnectFourConstants::PLAYER_TWO : ConnectFourConstants::PLAYER_ONE
       end
       if self.winner == maximizing_player_id
-        return MAX_VALUE
+        return ConnectFourConstants::MAX_VALUE
       else
-        return MIN_VALUE
+        return ConnectFourConstants::MIN_VALUE
       end
     end
 
     return 0 if depth == 0
 
     if maximizing_player
-      best_value = MAX_VALUE
+      best_value = ConnectFourConstants::MAX_VALUE
       self.children.each do |child|
         child_value = child.minimax(depth - 1, false)
         best_value = [child_value, best_value].min
       end
       return best_value
     else
-      best_value = MIN_VALUE
+      best_value = ConnectFourConstants::MIN_VALUE
       self.children.each do |child|
         child_value = child.minimax(depth - 1, true)
         best_value = [child_value, best_value].max
