@@ -15,11 +15,6 @@ class ConnectFourMoveNode
 		@parent = parent
 		@column = column
 	end
-	def value
-		# NOT IMPLEMENTED
-		return @value unless @value.nil?
-		@value = calculate_and_return_value
-	end
 
 	MAX_VALUE = +1000
 	MIN_VALUE = -1000
