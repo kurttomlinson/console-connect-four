@@ -98,24 +98,20 @@ class ConnectFourMoveNode
       (0..ConnectFourConstants::ROWS-1).each do |start_row|
         next if self.board_state[start_column][start_row].nil?
         # NORTH
-        begin
+        if start_row + 3 < ConnectFourConstants::ROWS
           winner = self.board_state[start_column][start_row] if self.board_state[start_column][start_row] == self.board_state[start_column + 0][start_row + 1] && self.board_state[start_column][start_row] == self.board_state[start_column + 0][start_row + 2] && self.board_state[start_column][start_row] == self.board_state[start_column + 0][start_row + 3]
-        rescue
         end
         # NORTH-EAST
-        begin
+        if start_column + 3 < ConnectFourConstants::COLUMNS && start_row + 3 < ConnectFourConstants::ROWS
           winner = self.board_state[start_column][start_row] if self.board_state[start_column][start_row] == self.board_state[start_column + 1][start_row + 1] && self.board_state[start_column][start_row] == self.board_state[start_column + 2][start_row + 2] && self.board_state[start_column][start_row] == self.board_state[start_column + 3][start_row + 3]
-        rescue
         end
         # EAST
-        begin
+        if start_column + 3 < ConnectFourConstants::COLUMNS
           winner = self.board_state[start_column][start_row] if self.board_state[start_column][start_row] == self.board_state[start_column + 1][start_row + 0] && self.board_state[start_column][start_row] == self.board_state[start_column + 2][start_row + 0] && self.board_state[start_column][start_row] == self.board_state[start_column + 3][start_row + 0]
-        rescue
         end
         # SOUTH-EAST
-        begin
+        if start_column + 3 < ConnectFourConstants::COLUMNS && start_row - 3 >= 0
           winner = self.board_state[start_column][start_row] if self.board_state[start_column][start_row] == self.board_state[start_column + 1][start_row - 1] && self.board_state[start_column][start_row] == self.board_state[start_column + 2][start_row - 2] && self.board_state[start_column][start_row] == self.board_state[start_column + 3][start_row - 3]
-        rescue
         end
         return winner if winner
       end

@@ -55,6 +55,42 @@ describe 'ConnectFourMoveNode#minimax' do
 end
 
 describe 'ConnectFourMoveNode#winner' do
+  it 'returns nil when there is no winner yet' do
+    tree = ConnectFourMoveTree.new
+    tree.make_move(1) # 1
+    tree.make_move(0)
+    tree.make_move(2) # 1
+    tree.make_move(3)
+    tree.make_move(4) # 1
+    tree.make_move(5)
+    tree.make_move(6) # 1
+
+    tree.make_move(2)
+    tree.make_move(6) # 1
+    tree.make_move(3)
+    tree.make_move(5) # 1
+    tree.make_move(4)
+
+    tree.make_move(5) # 1
+    tree.make_move(6)
+    tree.make_move(5) # 1
+    tree.make_move(6)
+    tree.make_move(6) # 1
+    tree.make_move(5)
+    tree.make_move(5) # 1
+
+    tree.make_move(2)
+    tree.make_move(2) # 1
+    tree.make_move(4)
+    tree.make_move(4) # 1
+    tree.make_move(3)
+    tree.make_move(4) # 1
+    tree.make_move(4)
+puts ""
+    puts tree.to_s
+
+    expect(tree.last_move.winner).to eq nil
+  end
   it 'returns the correct winner (N 1)' do
     tree = ConnectFourMoveTree.new
     tree.make_move(0)
