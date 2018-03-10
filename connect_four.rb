@@ -17,17 +17,17 @@ class ConnectFour
     end
   end
 
-	def play
-		@tree = ConnectFourMoveTree.new
+  def play
+    @tree = ConnectFourMoveTree.new
 
-		while @tree.winner.nil?
-			next_move = gets.to_i
-			@tree.make_move(next_move)
+    while @tree.winner.nil?
+      next_move = gets.to_i
+      @tree.make_move(next_move)
       print_state
-		end
+    end
 
-		puts "@tree.winner: #{@tree.winner}"
-	end
+    puts "@tree.winner: #{@tree.winner}"
+  end
 
 end
 
