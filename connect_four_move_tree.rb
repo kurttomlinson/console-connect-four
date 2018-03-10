@@ -11,10 +11,16 @@ class ConnectFourMoveTree
 	end
 
 	def make_move(column)
+		if (column < 0) || (column >= ConnectFourConstants::COLUMNS)
+			raise "columns must be between 0 and #{ConnectFourConstants::COLUMNS - 1}"
+		end
 		if @last_move.nil?
 			@root = ConnectFourMoveNode.new(nil, column)
 			@last_move = @root
 		else
+			if @last_move.moves_per_column[column] >= ConnectFourConstants::ROWS
+				raise "column overflow"
+			end
 			@last_move.children.each do |child|
 				if child.column == column
 					@last_move = child
