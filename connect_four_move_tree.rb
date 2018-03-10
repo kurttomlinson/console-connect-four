@@ -15,6 +15,7 @@ class ConnectFourMoveTree
   	if column =~ /c(\d*)/
   		depth = $1
   		depth = 4 if depth == ''
+  		depth = depth.to_i
   		column = ai_choose_column(depth)
   		puts "ai move: #{column}"
   	else
