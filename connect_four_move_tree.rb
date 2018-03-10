@@ -61,7 +61,9 @@ class ConnectFourMoveTree
     string = ""
     (ConnectFourConstants::ROWS-1).step(0, -1) do |row|
       (0..ConnectFourConstants::COLUMNS-1).each do |column|
-        if @last_move.board_state[column][row].nil?
+      	if @last_move.nil?
+          string += " ."
+        elsif @last_move.board_state[column][row].nil?
           string += " ."
         else
           string += " " + @last_move.board_state[column][row]
@@ -69,6 +71,8 @@ class ConnectFourMoveTree
       end
       string += "\n"
     end
+    string += "---------------\n"
+    string += " 0 1 2 3 4 5 6"
     return string
   end
 

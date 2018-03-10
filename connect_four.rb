@@ -27,7 +27,6 @@ class ConnectFour
       puts ""
       puts "move?"
       next_move = gets.strip
-      puts "next_move: #{next_move}"
       @tree.make_move(next_move)
       print_state
     end
