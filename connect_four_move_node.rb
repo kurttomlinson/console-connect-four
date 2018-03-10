@@ -27,7 +27,6 @@ class ConnectFourMoveNode
 	def minimax(depth, maximizing_player)
 		if self.winner
 			if maximizing_player
-				# binding.pry
 				maximizing_player_id = @owner
 			else
 				maximizing_player_id = (@owner == ConnectFourConstants::PLAYER_ONE) ? ConnectFourConstants::PLAYER_TWO : ConnectFourConstants::PLAYER_ONE
@@ -35,7 +34,6 @@ class ConnectFourMoveNode
 			if self.winner == maximizing_player_id
 				return MAX_VALUE
 			else
-				binding.pry
 				return MIN_VALUE
 			end
 		end
@@ -43,17 +41,17 @@ class ConnectFourMoveNode
 		return 0 if depth == 0
 
 		if maximizing_player
-			best_value = MIN_VALUE
+			best_value = MAX_VALUE
 			self.children.each do |child|
 				child_value = child.minimax(depth - 1, false)
-				best_value = [child_value, best_value].max
+				best_value = [child_value, best_value].min
 			end
 			return best_value
 		else
-			best_value = MAX_VALUE
+			best_value = MIN_VALUE
 			self.children.each do |child|
 				child_value = child.minimax(depth - 1, true)
-				best_value = [child_value, best_value].min
+				best_value = [child_value, best_value].max
 			end
 			return best_value
 		end
