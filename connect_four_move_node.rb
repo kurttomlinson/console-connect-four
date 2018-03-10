@@ -76,11 +76,18 @@ class ConnectFourMoveNode
 		{ column: @column, owner: @owner }.to_s
 	end
 
-	private
-
-	def calculate_and_return_value
-		# +1:
+	def moves_per_column
+		ancestor = parent
+		moves_count = Array.new(ConnectFourConstants::COLUMNS, 0)
+		while !ancestor.nil?
+			moves_count[ancestor.column] += 1
+			ancestor = ancestor.parent
+		end
+		moves_count[@column] += 1
+		return moves_count
 	end
+
+	private
 
 	def determine_winner
 		winner = nil
@@ -133,23 +140,13 @@ class ConnectFourMoveNode
 	def generate_and_return_children
 		return nil unless self.winner.nil?
 		children = Array.new
-		parents_per_column.each_with_index do |parent_count, column|
-			if parent_count < ConnectFourConstants::ROWS - 1
+		moves_per_column.each_with_index do |moves_count, column|
+			if moves_count < ConnectFourConstants::ROWS
 				child = ConnectFourMoveNode.new(self, column)
 				child.owner = (@owner == ConnectFourConstants::PLAYER_ONE) ? ConnectFourConstants::PLAYER_TWO : ConnectFourConstants::PLAYER_ONE
 				children.push(child)
 			end
 		end
 		return children
-	end
-
-	def parents_per_column
-		ancestor = parent
-		parents_count = Array.new(ConnectFourConstants::COLUMNS, 0)
-		while !ancestor.nil?
-			parents_count[ancestor.column] += 1
-			ancestor = ancestor.parent
-		end
-		return parents_count
 	end
 end
