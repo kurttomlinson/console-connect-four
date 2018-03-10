@@ -91,6 +91,9 @@ class ConnectFourMoveNode
 
 	def determine_winner
 		winner = nil
+		if moves_per_column.min == 6
+			return ConnectFourConstants::TIE
+		end
 		(0..ConnectFourConstants::COLUMNS-1).each do |start_column|
 			(0..ConnectFourConstants::ROWS-1).each do |start_row|
 				next if self.board_state[start_column][start_row].nil?
