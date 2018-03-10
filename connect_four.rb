@@ -10,7 +10,8 @@ class ConnectFour
         # 0 = only look at my moves
         # 1 = look at my moves and his moves
         # 2 = look at my moves, his moves, and my move
-        minimax = child.minimax(5, true)
+        depth = 4
+        minimax = child.minimax(4, true)
         puts "\tchild.column: #{child.column}; minimax: #{minimax}"
       end
     end
@@ -18,21 +19,6 @@ class ConnectFour
 
 	def play
 		@tree = ConnectFourMoveTree.new
-
-		# @tree.make_move(0)
-		# @tree.make_move(0)
-		# @tree.make_move(1)
-		# @tree.make_move(5)
-		# @tree.make_move(2)
-		# @tree.make_move(5)
-		# @tree.make_move(3)
-
-    # @tree.make_move(0)
-    # @tree.make_move(1)
-    # @tree.make_move(0)
-    # @tree.make_move(1)
-    # @tree.make_move(0)
-
 
 		while @tree.winner.nil?
 			next_move = gets.to_i
