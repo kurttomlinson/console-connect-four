@@ -34,10 +34,8 @@ class ConnectFourMoveTree
   		depth = 4 if depth == ''
   		depth = depth.to_i
   		column = ai_choose_column(depth)
-  		puts "ai move: #{column}"
   	else
   		column = column.to_i
-  		puts "human move: #{column}"
   	end
     if (column < 0) || (column >= ConnectFourConstants::COLUMNS)
       raise "columns must be between 0 and #{ConnectFourConstants::COLUMNS - 1}"
@@ -58,6 +56,7 @@ class ConnectFourMoveTree
     end
     @last_move.owner = @player_to_move
     @player_to_move = (@player_to_move == ConnectFourConstants::PLAYER_ONE) ? ConnectFourConstants::PLAYER_TWO : ConnectFourConstants::PLAYER_ONE
+    return column
   end
 
   def ai_choose_column(depth)
