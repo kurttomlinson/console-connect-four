@@ -1,6 +1,29 @@
 require 'rspec'
 require './connect_four_move_tree.rb'
 
+describe 'ConnectFourMoveTree#load_game' do
+	it 'loads a game from an array of moves' do
+		tree = ConnectFourMoveTree.new
+		tree.load_game([0,1,0,1,0,1,0])
+		expect(tree.winner).to be == ConnectFourConstants::PLAYER_ONE
+	end
+end
+
+describe 'ConnectFourMoveTree#export_game' do
+	it 'exports a game to an array of moves' do
+		tree = ConnectFourMoveTree.new
+		moves = [0,1,2,3,4,5,6]
+		moves.each do |move|
+			tree.make_move(move)
+		end
+		exported_moves = tree.export_game
+		expect(exported_moves.length).to be == moves.length
+		moves.each_with_index do |move, index|
+			expect(exported_moves[index]).to be == move
+		end
+	end
+end
+
 describe 'ConnectFourMoveTree#make_move' do
   it 'throws an error when a column overflows' do
   	tree = ConnectFourMoveTree.new

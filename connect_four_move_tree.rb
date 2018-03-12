@@ -10,6 +10,23 @@ class ConnectFourMoveTree
     @player_to_move = ConnectFourConstants::PLAYER_ONE
   end
 
+  def load_game(moves)
+    @root = nil
+    moves.each_with_index do |move, index|
+      make_move(move)
+    end
+  end
+
+  def export_game
+    node = @last_move
+    moves = Array.new
+    while !node.nil?
+      moves.push(node.column)
+      node = node.parent
+    end
+    return moves.reverse
+  end
+
   def make_move(column)
   	column = 'c' if column == ''
   	if column =~ /c(\d*)/
