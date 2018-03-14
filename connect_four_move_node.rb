@@ -1,5 +1,4 @@
 require_relative 'connect_four_constants.rb'
-require 'pry'
 
 class ConnectFourMoveNode
   attr_accessor :parent
@@ -51,18 +50,18 @@ class ConnectFourMoveNode
     end
   end
 
-
-
   def children
     # return the nodes for all valid moves
     return @children unless @children.nil?
     @children = generate_and_return_children
   end
+
   def winner
     # return 1 if player_one won. return 2 if player_two won. return nil otherwise.
     return @winner unless @winner.nil?
     @winner = determine_winner
   end
+
   def board_state
     # return an array where 1's represent player_one's moves,
     # 2's represent player_two's moves,
