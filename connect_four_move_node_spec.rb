@@ -1,5 +1,5 @@
 require 'rspec'
-require './connect_four_move_tree.rb'
+require_relative 'connect_four_move_tree.rb'
 
 describe 'ConnectFourMoveNode#minimax' do
   it 'returns 1000 for a sure win' do

@@ -1,5 +1,5 @@
 require 'rspec'
-require './connect_four_move_tree.rb'
+require_relative 'connect_four_move_tree.rb'
 
 describe 'ConnectFourMoveTree#load_game' do
 	it 'loads a game from an array of moves' do

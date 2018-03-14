@@ -1,5 +1,5 @@
-require './connect_four_move_node.rb'
-require './connect_four_constants.rb'
+require_relative 'connect_four_move_node.rb'
+require_relative 'connect_four_constants.rb'
 
 class ConnectFourMoveTree
   attr_accessor :root

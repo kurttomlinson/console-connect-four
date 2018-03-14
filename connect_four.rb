@@ -1,4 +1,4 @@
-require './connect_four_move_tree.rb'
+require_relative 'connect_four_move_tree.rb'
 
 class ConnectFour
 

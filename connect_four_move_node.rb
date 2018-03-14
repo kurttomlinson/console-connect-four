@@ -1,4 +1,4 @@
-require './connect_four_constants.rb'
+require_relative 'connect_four_constants.rb'
 require 'pry'
 
 class ConnectFourMoveNode
